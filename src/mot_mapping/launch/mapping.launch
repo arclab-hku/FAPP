@@ -1,0 +1,25 @@
+<launch>
+
+  <!-- <include file="$(find livox_ros_driver2)/launch_ROS1/msg_MID360.launch"/> -->
+          
+  <node pkg="mot_mapping" type="livox_process" name="livox_process" output="screen"/>
+
+  <node pkg="mot_mapping" type="mapping_node" name="mapping_node" output="screen">
+    <param name="dbscan/core_pts" value="3" type="int"/>
+    <param name="dbscan/tolerance" value="0.02" type="double"/>
+    <param name="dbscan/min_cluster" value="20" type="int"/>
+    <param name="dbscan/max_cluster" value="800" type="int"/>
+    <param name="detection/thresh_dist" value="0.04" type="double"/>
+    <param name="detection/thresh_var" value="0.28" type="double"/>
+    <param name="lidar/range_x" value="8.0" type="double"/>
+    <param name="lidar/range_y" value="8.0" type="double"/>
+    <param name="lidar/range_z" value="2.2" type="double"/>
+  </node>
+    <node pkg="tf" type="static_transform_publisher" name="lio_to_world" 
+        args="1 0 0 0 0 0  /world /camera_init 10" />
+  <node name="livox_rviz" pkg="rviz" type="rviz" respawn="true" 
+        args="-d $(find mot_mapping)/launch/display_point_cloud_ROS1.rviz"/>
+  
+
+
+</launch>

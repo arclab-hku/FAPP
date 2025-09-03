@@ -1,0 +1,15 @@
+session_name: fapp
+windows:
+  - window_name: fapp
+    layout: tiled
+    shell_command_before:
+      - source devel/setup.zsh
+    panes:
+      - shell_command:
+          - roslaunch so3_quadrotor_simulator simulator_example.launch 
+      - shell_command:
+          - sleep 2
+          - roslaunch fapp_planner sim_test.launch
+      - shell_command:
+          - sleep 2
+          - roslaunch mot_mapping sim_mapping.launch
