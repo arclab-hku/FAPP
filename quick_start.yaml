@@ -3,7 +3,7 @@ windows:
   - window_name: fapp
     layout: tiled
     shell_command_before:
-      - source devel/setup.zsh
+      - source devel/setup.bash
     panes:
       - shell_command:
           - roslaunch so3_quadrotor_simulator simulator_example.launch 
